@@ -1,0 +1,42 @@
+<project name="CSC230-L4-CircularArrayQueue" default="compile" basedir=".">
+	<description>Build file for Lab 4.</description>
+	
+	<property name="src" location="." />
+	<property name="build_dir" location="." />
+	<property name="dist" location="dist" />
+	<property environment="env" />
+	
+	<target name="compile" depends="clean">
+		<mkdir dir="${build_dir}" />
+		<javac srcdir="${src}" destdir="${build_dir}">
+			<classpath path="${src}/edu.tcnj.csc230/" />
+            <classpath path="${src}/jsjf/" />
+		</javac>
+	</target>
+	
+	<target name="clean">
+		<delete>
+			<fileset dir="${build_dir}" includes="**/*.class" />
+			<fileset dir="${build_dir}" includes="*.*~" />
+			<fileset dir="${build_dir}/edu.tcnj.csc230/" includes="**/*.class" />
+			<fileset dir="${build_dir}/jsjf/" includes="**/*.class" />
+		</delete>
+	</target>
+	
+	<target name="authors">
+		<echo message="Kevin Bohinski + Andrew Miller"/>
+	</target>
+	
+	<target name="run" depends="compile, authors">
+		<java classname="edu.tcnj.csc230.Main" classpath="." fork="yes"/>
+	</target>
+
+	<target name="jar">
+		<antcall target="clean">
+		</antcall>
+		<antcall target="compile">
+		</antcall>
+		<jar jarfile="./bohinsk1-millea12--lab4.jar" includes="**/*.java/** **/*.xml/** **/*.txt/**" basedir="." />
+	</target>
+
+</project>

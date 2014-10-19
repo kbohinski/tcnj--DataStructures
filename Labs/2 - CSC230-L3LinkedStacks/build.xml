@@ -1,0 +1,32 @@
+<project name="CSC230-L3-LinkedStack" default="compile" basedir=".">
+	<description>Build file for Lab 3.</description>
+	
+	<property name="src" location="." />
+	<property name="build_dir" location="." />
+	<property name="dist" location="dist" />
+	<property environment="env" />
+	
+	<target name="compile" depends="clean">
+		<mkdir dir="${build_dir}" />
+		<javac srcdir="${src}" destdir="${build_dir}">
+			<classpath path="${src}/csc230/" />
+            <classpath path="${src}/jsjf/" />
+		</javac>
+	</target>
+	
+	<target name="clean">
+		<delete>
+			<fileset dir="${build_dir}" includes="**/*.class" />
+			<fileset dir="${build_dir}" includes="*.*~" />
+			<fileset dir="${build_dir}/csc230/" includes="**/*.class" />
+		</delete>
+	</target>
+	
+	<target name="authors">
+		<echo message="Kevin Bohinski + Jack Graham"/>
+	</target>
+	
+	<target name="run" depends="compile, authors">
+		<java classname="csc230.Main" classpath="." fork="yes"/>
+	</target>	
+</project>

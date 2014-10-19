@@ -1,0 +1,44 @@
+<project name="CSC230-L6-Sorting" default="compile" basedir=".">
+	<description>Build file for Lab 6.</description>
+	
+	<property name="src" location="." />
+	<property name="build_dir" location="." />
+	<property name="dist" location="dist" />
+	<property environment="env" />
+	
+	<target name="compile" depends="clean">
+		<mkdir dir="${build_dir}" />
+		<javac srcdir="${src}" destdir="${build_dir}">
+			<classpath path="${src}/edu/tcnj/csc230/" />
+			<classpath path="${src}/jsjf/" />
+		</javac>
+	</target>
+	
+	<target name="clean">
+		<delete>
+			<fileset dir="${build_dir}" includes="**/*.class" />
+			<fileset dir="${build_dir}" includes="*.*~" />
+			<fileset dir="${build_dir}/edu/tcnj/csc230/" includes="**/*.class" />
+		</delete>
+		<delete dir="${build_dir}/META-INF" failonerror="false"/>
+	</target>
+	
+	<target name="author">
+		<echo message="Kevin Bohinski and Maulik Patel"/>
+	</target>
+	
+	<target name="run" depends="compile, author">
+		<java classname="edu.tcnj.csc230.Driver" classpath="." fork="yes">
+			<!-- <arg value="-Xss1G" /> -->
+		</java>
+	</target>
+	
+	<target name="jar">
+		<antcall target="clean">
+		</antcall>
+		<antcall target="compile">
+		</antcall>
+		<jar jarfile="./bohinsk1-patelm21--lab6.jar" includes="**/*.java/** **/*.xml/** **/*.txt/**" basedir="." />
+	</target>
+	
+</project>

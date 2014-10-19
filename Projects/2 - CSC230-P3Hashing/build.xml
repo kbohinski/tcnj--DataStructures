@@ -1,0 +1,45 @@
+<project name="CSC230-Project3-Hashing" default="compile" basedir=".">
+	<description>Build file for Project 3.</description>
+	
+	<property name="src" location="." />
+	<property name="build_dir" location="." />
+	<property name="dist" location="dist" />
+	<property environment="env" />
+	
+	<target name="compile" depends="clean">
+		<mkdir dir="${build_dir}" />
+		<javac srcdir="${src}" destdir="${build_dir}">
+			<classpath path="${src}/csc230/" />
+			<classpath path="${src}/edu/tcnj/csc230/" />
+            <classpath path="${src}/jsjf/" />
+            <classpath path="${src}/jsjf/exceptions" />
+		</javac>
+	</target>
+	
+	<target name="clean">
+		<delete failonerror="false">
+			<fileset dir="${build_dir}" includes="**/*.class" />
+			<fileset dir="${build_dir}" includes="*.*~" />
+			<fileset dir="${build_dir}/edu.tcnj.csc230/" includes="**/*.class" />
+			<fileset dir="${build_dir}/jsjf/" includes="**/*.class" />
+		</delete>
+		<delete dir="${build_dir}/META-INF" failonerror="false"/>
+	</target>
+
+	<target name="who">
+		<echo message="Kevin Bohinski"/>
+	</target>
+	
+	<target name="run" depends="compile, who">
+		<java classname="edu.tcnj.csc230.Driver" classpath="." fork="yes"/>
+	</target>
+
+	<target name="jar">
+		<antcall target="clean">
+		</antcall>
+		<antcall target="compile">
+		</antcall>
+		<jar jarfile="./bohinsk1--Project3.jar" includes="**/*.java/** **/*.xml/** **/*.txt/**" basedir="." />
+	</target>
+
+</project>

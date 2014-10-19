@@ -1,0 +1,47 @@
+<project name="CSC230-Project1Zipcodes" default="compile" basedir=".">
+	<description>Build file for Project 1.</description>
+
+	<property name="src" location="." />
+	<property name="build_dir" location="." />
+	<property name="dist" location="dist" />
+	<property environment="env" />
+
+	<target name="compile">
+		<mkdir dir="${build_dir}" />
+		<javac srcdir="${src}" destdir="${build_dir}">
+			<classpath path="${src}/csc230/" />
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete failonerror="false">
+			<fileset dir="${build_dir}" includes="**/*.class" />
+			<fileset dir="${build_dir}/csc230/" includes="**/*.class" />
+		</delete>
+	</target>
+	
+	<target name="getInput">
+		<get src="http://www.tcnj.edu/~mmmartin/Courses/CSC250/DataSources/zipcodes.txt" dest="zipcodes.txt" />
+	</target>
+	
+	<target name="run" depends="getInput,compile">
+		<java classname="csc230.main" classpath="."/>
+	</target>
+	
+	<target name="output" depends="run" >
+		<concat>
+			<fileset dir="." file="zipout.txt" />
+		</concat>
+	</target>
+
+	<target name="jar">
+		<antcall target="compile">
+		</antcall>
+		<antcall target="clean">
+		</antcall>
+		<jar jarfile="./bohinsk1.jar" includes="**/*.java/** **/*.xml/** **/*.txt/**" basedir="." />
+	</target>
+	
+</project>
+
+<!-- compile, clean, getInput, run, output -->
