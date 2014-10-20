@@ -1,7 +1,7 @@
 TCNJ-CSC230-Spring2014-ProjectsAndLabs
 ======================================
 
-Backup of all of the selected projects and labs created while taking CSC 230 - CS II: DATA STRUCTURES (Spring 2014) at TCNJ with professors Dr. Martinovic and Dr. DePasquale.
+Backup of selected projects and labs created while taking CSC 230 - CS II: DATA STRUCTURES (Spring 2014) at TCNJ with professors Dr. Martinovic and Dr. DePasquale.
 
 **NOTES:**
 * These will be removed at request of professors/department.
